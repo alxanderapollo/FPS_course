@@ -1,0 +1,15 @@
+# Godot engine
+.import/
+.export/
+.export_presets.cfg
+.mono/
+
+# Godot 4+
+.godot/
+.godot/editor/
+.godot/imported/
+
+# OS / editor junk
+.DS_Store
+*.log
+*~
