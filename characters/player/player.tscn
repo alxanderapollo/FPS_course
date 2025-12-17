@@ -1,13 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://c6t0llgd3eyoq"]
+[gd_scene load_steps=9 format=3 uid="uid://c6t0llgd3eyoq"]
 
 [ext_resource type="Script" uid="uid://cuu7y8tydfch6" path="res://characters/player/player.gd" id="1_xxgcw"]
 [ext_resource type="Script" uid="uid://de0gpb0vgioup" path="res://characters/player/camera_3d.gd" id="2_exd8k"]
 [ext_resource type="PackedScene" uid="uid://2dkdwi7cq384" path="res://characters/character_mover.tscn" id="3_exd8k"]
+[ext_resource type="Script" uid="uid://bl1lcxiww68qj" path="res://characters/player/weapon_manager.gd" id="3_ixbpm"]
 [ext_resource type="PackedScene" uid="uid://bxoh1c8r20pml" path="res://characters/health_manager.tscn" id="4_5dc8e"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_b886q"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_508ok"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_5dc8e"]
 
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 2
@@ -23,8 +26,34 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_508ok")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -0.26961315)
 script = ExtResource("2_exd8k")
+
+[node name="Weapon Manager" type="Node3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.3492981, 0.46023655, -0.21262324, -0.61427414)
+script = ExtResource("3_ixbpm")
+
+[node name="Weapons" type="Node3D" parent="Camera3D/Weapon Manager"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.02940923, 0, 0, 0)
+
+[node name="Machete" type="MeshInstance3D" parent="Camera3D/Weapon Manager/Weapons"]
+transform = Transform3D(0.16798846, 0, 0, 0, 0.1752755, 0, 0, 0, 4.0075517, -0.101711035, 0.06421077, 1.7824421)
+mesh = SubResource("BoxMesh_5dc8e")
+
+[node name="MachineGun" type="MeshInstance3D" parent="Camera3D/Weapon Manager/Weapons"]
+transform = Transform3D(0.16798846, 0, 0, 0, 0.1752755, 0, 0, 0, 4.0075517, -0.101711035, 0.06421077, 1.7824421)
+visible = false
+mesh = SubResource("BoxMesh_5dc8e")
+
+[node name="Shotgun" type="MeshInstance3D" parent="Camera3D/Weapon Manager/Weapons"]
+transform = Transform3D(0.16798846, 0, 0, 0, 0.1752755, 0, 0, 0, 4.0075517, -0.101711035, 0.06421077, 1.7824421)
+visible = false
+mesh = SubResource("BoxMesh_5dc8e")
+
+[node name="RocketLauncher" type="MeshInstance3D" parent="Camera3D/Weapon Manager/Weapons"]
+transform = Transform3D(0.16798846, 0, 0, 0, 0.1752755, 0, 0, 0, 4.0075517, -0.101711035, 0.06421077, 1.7824421)
+visible = false
+mesh = SubResource("BoxMesh_5dc8e")
 
 [node name="CharacterMover" parent="." instance=ExtResource("3_exd8k")]
 
