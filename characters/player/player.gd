@@ -2,7 +2,7 @@ extends CharacterBody3D
 #refrence to the camera - equivlent to get camera node - onready means it happens when the scene starts
 @onready var camera_3d = $Camera3D
 @onready var health_manager = $HealthManager
-
+@onready var weapon_manager = $"Camera3D/Weapon Manager"
 @onready var character_mover = $CharacterMover
 #horizontal and vertical mouse sensetivity
 @export var mouse_sensitivity_h = 0.15
@@ -10,6 +10,20 @@ extends CharacterBody3D
 
 #track if the player is dead
 var dead = false
+
+const HOTKEYS = {
+	KEY_1: 0,
+	KEY_2: 1,
+	KEY_3: 2,
+	KEY_4: 3,
+	KEY_5: 4,
+	KEY_6: 5,
+	KEY_7: 6,
+	KEY_8: 7,
+	KEY_9: 8,
+	KEY_0: 9,
+	
+}
 
 #gets called at run time 
 func _ready():
@@ -22,7 +36,6 @@ func _ready():
 #input function is called whenever any form of input is done on the mouse by the player
 #we want the mouse movedment now
 func _input(event):
-	
 #	if the player is dead we dont also want the camera to be moved around
 	if dead: return
 #	if player moves the mouse, 
@@ -35,8 +48,16 @@ func _input(event):
 		camera_3d.rotation_degrees.x -= event.relative.y * mouse_sensitivity_v
 #		clamping makes so the player cant tile past straight of 90 degrees
 		camera_3d.rotation_degrees.x = clamp(camera_3d.rotation_degrees.x, -90, 90)
-
-func _process(delta):
+	 
+	if event is InputEventMouseButton  and event.pressed:
+		if event.button_index == MOUSE_BUTTON_WHEEL_UP: 
+			weapon_manager.switch_to_previous_weapon()
+		if event.button_index == MOUSE_BUTTON_WHEEL_DOWN: 
+			weapon_manager.switch_to_next_weapon()
+	if event is InputEventKey and event.pressed and event.keycode in HOTKEYS:
+		weapon_manager.switch_to_weapon_slot(HOTKEYS[event.keycode])
+		
+func _process(_delta):
 	if Input.is_action_just_pressed("quit"): get_tree().quit()
 	if Input.is_action_just_pressed("restart"): get_tree().reload_current_scene()
 	if Input.is_action_just_pressed("fullscreen"):
@@ -59,7 +80,6 @@ func _process(delta):
 	character_mover.set_move_dir(move_dir)
 	
 	if Input.is_action_just_pressed("jump"): 
-		print('jump was pressed!')
 		character_mover.jump()
 		
 func kill():
