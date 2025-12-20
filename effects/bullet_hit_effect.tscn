@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b57b5hex7ri88"]
+[gd_scene load_steps=11 format=3 uid="uid://b57b5hex7ri88"]
 
 [ext_resource type="Texture2D" uid="uid://gkdj1cedqwum" path="res://effects/circle32.png" id="1_15lt1"]
 
@@ -55,6 +55,8 @@ color_ramp = SubResource("GradientTexture1D_e76uy")
 radial_segments = 7
 rings = 3
 
+[sub_resource type="QuadMesh" id="QuadMesh_15lt1"]
+
 [node name="BulletHitEffect" type="Node3D"]
 
 [node name="SparkParticles" type="GPUParticles3D" parent="."]
@@ -74,3 +76,17 @@ one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_or0g3")
 draw_pass_1 = SubResource("SphereMesh_gxb4d")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.003842961, 0.033187926)
+mesh = SubResource("QuadMesh_15lt1")
+
+[node name="Decal" type="Decal" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.039207462, -0.9992311, 0, 0.9992311, -0.039207462, -0.00242728, 0, 0)
+size = Vector3(0.1, 0.1, 0.1)
+texture_albedo = ExtResource("1_15lt1")
+modulate = Color(0.00033390365, 0.0003339036, 0.00033390356, 1)
+distance_fade_enabled = true
+
+[connection signal="tree_entered" from="." to="SparkParticles" method="restart"]
+[connection signal="tree_entered" from="." to="SmokeParticles" method="restart"]

@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://db8y3x20u2kaw"]
+[gd_scene load_steps=10 format=3 uid="uid://db8y3x20u2kaw"]
 
 [ext_resource type="PackedScene" uid="uid://cida8nkqkm2bj" path="res://Environment/rock_boulder.tscn" id="1_aqk2v"]
 [ext_resource type="PackedScene" uid="uid://dq2mukl58shgf" path="res://Environment/rock_cliff.tscn" id="2_036b0"]
 [ext_resource type="PackedScene" uid="uid://c6sxxewunfgau" path="res://Environment/rock_pillar.tscn" id="3_dwbse"]
 [ext_resource type="PackedScene" uid="uid://bq31fq15gmnon" path="res://Environment/sand.tscn" id="4_pkg7o"]
 [ext_resource type="PackedScene" uid="uid://c6t0llgd3eyoq" path="res://characters/player/player.tscn" id="5_036b0"]
+[ext_resource type="Script" uid="uid://bxyk3a4evadjq" path="res://test/test_bullet_hit_effect_spawn.gd" id="7_gbfbk"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_aqk2v"]
 
@@ -122,5 +123,15 @@ shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("5_036b0")]
 transform = Transform3D(0.023715502, -0.0062004616, 0.99969953, 0.019652745, 0.99979043, 0.0057347966, -0.9995258, 0.019510841, 0.02383239, -19.993204, 0.22613072, 11.390444)
+
+[node name="Graphics" parent="Player/Camera3D/Weapon Manager/Weapons/Machete" index="0"]
+transform = Transform3D(0.7761967, 0.15807585, -0.023765665, -0.15807593, 0.77655643, 0.0023948443, 0.023765678, 0.0023948806, 0.7921255, 0.6272116, -0.46467185, -0.28525758)
+
+[node name="Graphics" parent="Player/Camera3D/Weapon Manager/Weapons/Shotgun" index="0"]
+transform = Transform3D(0.9997019, -0.0050872173, 0.023892863, 0.012691486, 0.9438762, -0.33005673, -0.020872824, 0.33026147, 0.94365907, 0.085829705, -0.19688678, 0.030000448)
+
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(-0.99809414, 0.061710496, 0, -0.061710496, -0.99809414, 0, 0, 0, 1, -25.506958, 0.0027775764, 11.986843)
+script = ExtResource("7_gbfbk")
 
 [editable path="Player"]
