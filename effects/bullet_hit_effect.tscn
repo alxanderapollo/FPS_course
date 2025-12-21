@@ -79,6 +79,7 @@ draw_pass_1 = SubResource("SphereMesh_gxb4d")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.003842961, 0.033187926)
+visible = false
 mesh = SubResource("QuadMesh_15lt1")
 
 [node name="Decal" type="Decal" parent="."]

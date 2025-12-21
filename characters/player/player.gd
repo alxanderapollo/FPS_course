@@ -86,6 +86,8 @@ func kill():
 	dead = true
 #	make it so player cannot move if you died
 	character_mover.set_move_dir(Vector3.ZERO)
-	
+
+func hurt(damage_data: DamageData): 
+	health_manager.hurt(damage_data)
 
 	

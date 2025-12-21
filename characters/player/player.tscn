@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://c6t0llgd3eyoq"]
+[gd_scene load_steps=26 format=3 uid="uid://c6t0llgd3eyoq"]
 
 [ext_resource type="Script" uid="uid://cuu7y8tydfch6" path="res://characters/player/player.gd" id="1_xxgcw"]
 [ext_resource type="Script" uid="uid://de0gpb0vgioup" path="res://characters/player/camera_3d.gd" id="2_exd8k"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://cxjcohuo1wpxs" path="res://weapons/assets/machete.glb" id="5_dirf7"]
 [ext_resource type="PackedScene" uid="uid://di8ynuxpoofrd" path="res://weapons/assets/shotgun.glb" id="6_rpf03"]
 [ext_resource type="PackedScene" uid="uid://cl1eahrfh8vt4" path="res://weapons/assets/rocketlauncher.glb" id="7_x5dtk"]
+[ext_resource type="PackedScene" uid="uid://cqltxlo0rcd0o" path="res://weapons/bullet_emitters/bullet_emitter.tscn" id="8_3t07l"]
+[ext_resource type="PackedScene" uid="uid://prbdq7qijvmf" path="res://weapons/bullet_emitters/hit_scan_bullet_emitter.tscn" id="9_3t07l"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_b886q"]
 
@@ -196,33 +198,6 @@ _data = {
 &"attack": SubResource("Animation_gqopd")
 }
 
-[sub_resource type="Animation" id="Animation_icpky"]
-resource_name = "attack"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.050181046, 0.09986438, 0.2501377, 0.35, 0.45, 0.55044883),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0.085829705, -0.19688678, 0.030000448), Vector3(0.0788773, -0.14939159, 0.34164053), Vector3(0.0788773, -0.14939159, 0.34164053), Vector3(0.08871028, -0.04347658, -0.115033746), Vector3(0.09397331, -0.78251696, -0.28632367), Vector3(0.087489575, 0.12793362, -0.07530534), Vector3(0.085829705, -0.19688678, 0.030000448)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:quaternion")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.050181046, 0.09986438, 0.2501377, 0.35, 0.45, 0.55044883),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Quaternion(0.16842829, 0.011353726, 0.004540917, 0.9856381), Quaternion(0.0009999161, 0.010999324, -0.0009999385, 0.9999385), Quaternion(0.0009999162, 0.010999326, -0.0009999385, 0.9999385), Quaternion(0.77899575, 0.009269744, 0.02506414, 0.62645954), Quaternion(0.7789957, 0.009269742, 0.025064139, 0.6264596), Quaternion(0.7789957, 0.009269743, 0.025064139, 0.6264596), Quaternion(0.16842829, 0.011353726, 0.004540917, 0.9856381)]
-}
-
 [sub_resource type="Animation" id="Animation_58jvb"]
 length = 0.001
 tracks/0/type = "value"
@@ -250,6 +225,33 @@ tracks/1/keys = {
 "values": [Quaternion(0.16745673, 0.011352581, 0.00450868, 0.9858037)]
 }
 
+[sub_resource type="Animation" id="Animation_icpky"]
+resource_name = "attack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.050181046, 0.09986438, 0.2501377, 0.35, 0.45, 0.55044883),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.085829705, -0.19688678, 0.030000448), Vector3(0.0788773, -0.14939159, 0.34164053), Vector3(0.0788773, -0.14939159, 0.34164053), Vector3(0.08871028, -0.04347658, -0.115033746), Vector3(0.09397331, -0.78251696, -0.28632367), Vector3(0.087489575, 0.12793362, -0.07530534), Vector3(0.085829705, -0.19688678, 0.030000448)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:quaternion")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.050181046, 0.09986438, 0.2501377, 0.35, 0.45, 0.55044883),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Quaternion(0.16842829, 0.011353726, 0.004540917, 0.9856381), Quaternion(0.0009999161, 0.010999324, -0.0009999385, 0.9999385), Quaternion(0.0009999162, 0.010999326, -0.0009999385, 0.9999385), Quaternion(0.77899575, 0.009269744, 0.02506414, 0.62645954), Quaternion(0.7789957, 0.009269742, 0.025064139, 0.6264596), Quaternion(0.7789957, 0.009269743, 0.025064139, 0.6264596), Quaternion(0.16842829, 0.011353726, 0.004540917, 0.9856381)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8l73k"]
 _data = {
 &"RESET": SubResource("Animation_58jvb"),
@@ -257,7 +259,7 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody3D"]
-collision_layer = 2
+collision_layer = 6
 collision_mask = 3
 script = ExtResource("1_xxgcw")
 
@@ -285,7 +287,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.14618248, -0.68710697, -0.
 visible = false
 
 [node name="Graphics" type="Node3D" parent="Camera3D/Weapon Manager/Weapons/Machete"]
-transform = Transform3D(0.7761967, 0.15807585, -0.023765663, -0.15807593, 0.77655643, 0.0023948443, 0.023765678, 0.0023948806, 0.79212546, 0.6272116, -0.46467185, -0.28525758)
+transform = Transform3D(0.7761967, 0.15807585, -0.023765666, -0.15807593, 0.77655643, 0.0023948445, 0.023765678, 0.0023948806, 0.7921256, 0.6272116, -0.46467185, -0.28525758)
 rotation_edit_mode = 1
 
 [node name="Machete_mm" parent="Camera3D/Weapon Manager/Weapons/Machete/Graphics" instance=ExtResource("5_dirf7")]
@@ -334,9 +336,10 @@ transform = Transform3D(0.59663284, -0.016428072, -0.10937402, 0.016443346, 0.60
 [node name="Shotgun" type="Node3D" parent="Camera3D/Weapon Manager/Weapons"]
 transform = Transform3D(0.99975604, 0.0020217511, 0.021995293, -0.009977956, 0.9297444, 0.3680701, -0.019705856, -0.36819977, 0.9295378, 0, 0, 0)
 rotation_edit_mode = 1
+visible = false
 
 [node name="Graphics" type="Node3D" parent="Camera3D/Weapon Manager/Weapons/Shotgun"]
-transform = Transform3D(0.99970204, -0.0050872173, 0.023892863, 0.012691487, 0.9438762, -0.33005673, -0.020872826, 0.33026147, 0.94365907, 0.085829705, -0.19688678, 0.030000448)
+transform = Transform3D(0.9997018, -0.0050872173, 0.023892863, 0.012691484, 0.9438762, -0.33005673, -0.020872822, 0.33026147, 0.94365907, 0.085829705, -0.19688678, 0.030000448)
 rotation_edit_mode = 1
 
 [node name="shotgun" parent="Camera3D/Weapon Manager/Weapons/Shotgun/Graphics" instance=ExtResource("6_rpf03")]
@@ -349,7 +352,16 @@ libraries = {
 }
 autoplay = "RESET"
 
+[node name="BulletEmitter" parent="Camera3D" instance=ExtResource("8_3t07l")]
+
+[node name="Timer" type="Timer" parent="Camera3D/BulletEmitter"]
+autostart = true
+
+[node name="HitScanBulletEmitter" parent="Camera3D/BulletEmitter" instance=ExtResource("9_3t07l")]
+
 [node name="CharacterMover" parent="." instance=ExtResource("3_exd8k")]
 
 [node name="HealthManager" parent="." instance=ExtResource("4_5dc8e")]
 verbose = true
+
+[connection signal="timeout" from="Camera3D/BulletEmitter/Timer" to="Camera3D/BulletEmitter" method="fire"]
