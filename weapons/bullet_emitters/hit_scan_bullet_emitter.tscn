@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://prbdq7qijvmf"]
+
+[ext_resource type="Script" uid="uid://c2bg0wtjw7p4e" path="res://weapons/bullet_emitters/hit_scan_bullet_emitter.gd" id="1_s462u"]
+
+[node name="HitScanBulletEmitter" type="Node3D"]
+script = ExtResource("1_s462u")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
