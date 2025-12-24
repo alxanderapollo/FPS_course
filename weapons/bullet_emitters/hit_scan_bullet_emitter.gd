@@ -9,6 +9,9 @@ func set_bodies_to_execule(bodies : Array):
 		ray_cast_3d.add_exception(body)
 	
 func fire():
+	ray_cast_3d.enabled = true
+#	force the update right before the collison checks
+	ray_cast_3d.force_raycast_update()
 	if ray_cast_3d.is_colliding():
 		if ray_cast_3d.get_collider().has_method("hurt"):
 			var damage_data = DamageData.new()
@@ -25,5 +28,6 @@ func fire():
 			if hit_normal.is_equal_approx(Vector3.UP) or hit_normal.is_equal_approx(Vector3.DOWN):
 				hit_effect_inst.look_at(look_at_pos, Vector3.RIGHT)
 			else: hit_effect_inst.look_at(look_at_pos)
-				
+	ray_cast_3d.enabled = false
+
 	super()

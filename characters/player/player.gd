@@ -81,6 +81,8 @@ func _process(_delta):
 	
 	if Input.is_action_just_pressed("jump"): 
 		character_mover.jump()
+	weapon_manager.attack(Input.is_action_just_pressed("attack"), Input.is_action_just_pressed("attack"))	
+	
 		
 func kill():
 	dead = true
