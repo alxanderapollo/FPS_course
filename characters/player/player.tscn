@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://c6t0llgd3eyoq"]
+[gd_scene load_steps=29 format=3 uid="uid://c6t0llgd3eyoq"]
 
 [ext_resource type="Script" uid="uid://cuu7y8tydfch6" path="res://characters/player/player.gd" id="1_xxgcw"]
 [ext_resource type="Script" uid="uid://de0gpb0vgioup" path="res://characters/player/camera_3d.gd" id="2_exd8k"]
@@ -9,8 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://cxjcohuo1wpxs" path="res://weapons/assets/machete.glb" id="5_dirf7"]
 [ext_resource type="Script" uid="uid://epic8g06ye5x" path="res://weapon.gd" id="5_on558"]
 [ext_resource type="PackedScene" uid="uid://di8ynuxpoofrd" path="res://weapons/assets/shotgun.glb" id="6_rpf03"]
+[ext_resource type="PackedScene" uid="uid://dr3egy1aaid48" path="res://effects/muzzle_flash/muzzle_flash.tscn" id="7_icpky"]
 [ext_resource type="PackedScene" uid="uid://cl1eahrfh8vt4" path="res://weapons/assets/rocketlauncher.glb" id="7_x5dtk"]
 [ext_resource type="PackedScene" uid="uid://cqltxlo0rcd0o" path="res://weapons/bullet_emitters/bullet_emitter.tscn" id="8_3t07l"]
+[ext_resource type="PackedScene" uid="uid://bqem3ualwv1x1" path="res://effects/muzzle_flash/assets/muzzleflash1.glb" id="8_58jvb"]
 [ext_resource type="PackedScene" uid="uid://prbdq7qijvmf" path="res://weapons/bullet_emitters/hit_scan_bullet_emitter.tscn" id="9_3t07l"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_b886q"]
@@ -320,7 +322,13 @@ libraries = {
 autoplay = "RESET"
 
 [node name="MachineGun_mm" parent="Camera3D/Weapon Manager/Weapons/MachineGun/Graphics" instance=ExtResource("4_c6leb")]
-transform = Transform3D(0.29138622, 2.8521754e-09, 0, 9.313226e-10, 0.36248112, 0.07420516, 1.8626451e-09, -0.056238137, 0.478287, 0.026876986, 0.04972446, 0.47719836)
+transform = Transform3D(0.2913862, 4.7148205e-09, 0, 9.895302e-10, 0.36248112, 0.07420516, 2.3283064e-09, -0.056238137, 0.478287, 0.025681913, 0.04234135, 0.40816402)
+
+[node name="MuzzleFlash" parent="Camera3D/Weapon Manager/Weapons/MachineGun/Graphics" instance=ExtResource("7_icpky")]
+transform = Transform3D(0.9999999, 8.614734e-09, 0, 4.656613e-10, 1, 7.450581e-09, 3.7252903e-09, 7.450581e-09, 1, 0, 0, 0)
+
+[node name="muzzleflash1" parent="Camera3D/Weapon Manager/Weapons/MachineGun/Graphics/MuzzleFlash" instance=ExtResource("8_58jvb")]
+transform = Transform3D(-0.3017302, 0.041851185, -0.07535939, 0.03921435, 0.36616212, -0.02278798, -0.023717007, 0.005046677, -0.46747705, 0.029063106, 0.05040574, -0.34763086)
 
 [node name="BulletEmitter" parent="Camera3D/Weapon Manager/Weapons/MachineGun" instance=ExtResource("8_3t07l")]
 transform = Transform3D(0.9999741, -0.0013268697, 0.007108598, 0.0006084965, 0.99497503, 0.10012241, -0.0072057266, -0.10011546, 0.99494976, 0, 0, 0)
